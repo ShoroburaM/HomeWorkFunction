@@ -4,32 +4,6 @@ namespace FunctionPythagoras
 {
     class Program
     {
-        static int Spase(int maxnumb) 
-        {
-            int spase;
-            if (maxnumb >= 0 && maxnumb < 10)
-            {
-                spase = 0;
-                return spase;
-            }
-            else if (maxnumb >= 10 && maxnumb < 100)
-            {
-                spase = 1;
-                return spase;
-            }
-            else if (maxnumb >= 100 && maxnumb < 1000)
-            {
-                spase = 2;
-                return spase;
-            }
-            else
-            {
-                spase = 3;
-                return spase;
-            }
-
-        }
-
         static void Pythagoras(int hend, int vend)
         {
            
@@ -38,29 +12,19 @@ namespace FunctionPythagoras
             int vstart = 1;
 
             int max = hend * vend;
-            int length;
-            if (max >= 0 && max <= 9)
+            int length = 0;
+           int maxcount = max;
+            while (maxcount >=  1)
             {
-                length = 1;
-            }
-            else if (max > 9 && max <= 99)
-            {
-                length = 2;
-            }
-            else if (max > 99 && max <= 999)
-            {
-                length = 3;
-            }
-            else
-            {
-                length = 4;
+                length++;
+                maxcount = maxcount / 10;
             }
             
 
             //ПРОРИСОВКА ПЕРШОЇ ЛІНЇ
 
-            int spase = Spase(vstart);
-            for (int i = 0; i <= length - spase; i++)
+            
+            for (int i = 0; i <= length-1; i++)
             {
                 Console.Write(" ");
             }
@@ -72,9 +36,15 @@ namespace FunctionPythagoras
 
             while (x <= hend)
             {
+                int longline = x;
+                int countlongline = 0;
+                while (longline >= 1)
+                {
+                    countlongline++;
+                    longline = longline / 10;
+                }
 
-                int spase1 = Spase(x); ;
-                for (int i = 0; i <= length - spase1; i++)
+                for (int i = 0; i <= length - countlongline; i++)
                 {
                     Console.Write(" ");
 
@@ -87,8 +57,8 @@ namespace FunctionPythagoras
 
             //ПРОРИСОВКА ДРУГОЇ ЛІНЇ
 
-                int spase2 = Spase(vstart); 
-                for (int i = 0; i <= length - spase2; i++)
+                
+                for (int i = 0; i < length; i++)
                 {
                     Console.Write(" ");
                 }
@@ -96,26 +66,14 @@ namespace FunctionPythagoras
 
             for (int line = hstart;  line <= hend; line++)
             {
+                Console.Write("-");
                 int linelong1 = 0;
-                while (linelong1 <= length)
-                {
-                    Console.Write("-");
-                    linelong1++;
-                }
-                if (line >= 0 && line < 100)
-                {
-                    Console.Write("-");
-                }
-                else if (line >= 100 && line < 1000)
-                {
-                    Console.Write("--");
-                }
-                
-                else
-                {
-                    Console.Write("----");
-                }
-
+               
+                    while (linelong1 < length)
+                    {
+                        Console.Write("-");
+                        linelong1++;
+                    }
             }
             
             Console.WriteLine();
@@ -126,8 +84,14 @@ namespace FunctionPythagoras
             {
                 while (vstart <= vend)
                 {
-                    int spase3 = Spase(vstart);
-                    for (int i = 0; i <= length - spase3; i++)
+                    int longline = vstart;
+                    int countlongline = 0;
+                    while (longline >= 1)
+                    {
+                        countlongline++;
+                        longline = longline / 10;
+                    }
+                    for (int i = 0; i <= length - countlongline; i++)
                     {
                         Console.Write(" ");
                     }
@@ -138,23 +102,24 @@ namespace FunctionPythagoras
 
                     while (x <= hend)
                     {
-
                         int sum = vstart * x;
-                        int spase4 = Spase(sum);
-                        for (int i = 0; i <= length - spase4; i++)
+                        int longline1 = sum;
+                        int countlongline1 = 0;
+                        while (longline1 >= 1)
+                        {
+                            countlongline1++;
+                            longline1 = longline1 / 10;
+                        }
+                        for (int i = 0; i <= length - countlongline1; i++)
                         {
                             Console.Write(" ");
                         }
 
                         Console.Write(sum);
                         x++;
-
-
                     }
                     Console.WriteLine();
                     vstart++;
-
-
                 }
             }
         }
